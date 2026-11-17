@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucas Andrade Martins — Portfólio</title>
+  <meta name="description" content="Portfólio de Lucas Andrade Martins, estudante do Ensino Médio e Técnico em Informática no Cotemig. Projetos, habilidades, formação e contato.">
+  <meta name="theme-color" content="#0a0d0c">
+
+  <!-- Aplica o tema salvo antes de desenhar a página (evita "piscar" no tema errado) -->
+  <script>
+    (function () {
+      var raiz = document.documentElement;
+      raiz.classList.add("js");
+      try {
+        var salvo = localStorage.getItem("lam-tema");
+        if (salvo === "claro" || salvo === "escuro") raiz.setAttribute("data-tema", salvo);
+      } catch (e) { /* armazenamento indisponível: fica no escuro */ }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <a href="#sobre" class="pular-link">Pular para o conteúdo</a>
+
+  <!-- ===================== PAINEL SUPERIOR ===================== -->
+  <header class="painel" id="painel">
+    <a href="#inicio" class="painel-marca" aria-label="Voltar ao início">
+      <span class="painel-led" aria-hidden="true"></span>LAM<span class="painel-marca-os">-OS</span>
+    </a>
+
+    <nav class="painel-nav" id="painelNav" aria-label="Seções">
+      <a href="#sobre">./sobre</a>
+      <a href="#habilidades">./habilidades</a>
+      <a href="#formacao">./formacao</a>
+      <a href="#projetos">./projetos</a>
+      <a href="#contato">./contato</a>
+    </nav>
+
+    <div class="painel-sistema">
+      <time class="painel-relogio" id="relogio" aria-label="Horário atual">--:--</time>
+
+      <button class="icone-botao" id="botaoTema" type="button" aria-label="Mudar para tema claro">
+        <svg class="ico ico-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="ico ico-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+
+      <a class="botao-cv" href="assets/docs/Curriculo_Lucas_Andrade_Martins.pdf" download="Curriculo_Lucas_Andrade_Martins.pdf">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+        <span>curriculo.pdf</span>
+      </a>
+
+      <button class="icone-botao botao-menu" id="botaoMenu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="painelNav">
+        <span class="hamburguer" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== ÁREA DE TRABALHO (ABERTURA) ===================== -->
+    <section class="desktop" id="inicio" aria-label="Apresentação">
+      <canvas class="chuva" id="chuva" aria-hidden="true"></canvas>
+      <div class="desktop-vinheta" aria-hidden="true"></div>
+
+      <ul class="desktop-icones" aria-label="Arquivos da área de trabalho">
+        <li>
+          <button class="desktop-icone" type="button" data-abrir="janSobre">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path class="ico-papel" d="M12 4h17l9 9v31H12z"/><path class="ico-dobra" d="M29 4v9h9"/><path class="ico-linhas" d="M17 22h16M17 28h16M17 34h10"/></svg>
+            <span>sobre.txt</span>
+          </button>
+        </li>
+        <li>
+          <button class="desktop-icone" type="button" data-abrir="janProjetos">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path class="ico-pasta-fundo" d="M4 10h15l4 5h21v25H4z"/><path class="ico-pasta" d="M4 18h40v22H4z"/></svg>
+            <span>projetos/</span>
+          </button>
+        </li>
+        <li>
+          <button class="desktop-icone" type="button" data-abrir="janContato">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path class="ico-papel" d="M12 4h17l9 9v31H12z"/><path class="ico-dobra" d="M29 4v9h9"/><path class="ico-linhas" d="M17 24l5 4-5 4M24 33h9"/></svg>
+            <span>contato.sh</span>
+          </button>
+        </li>
+        <li>
+          <button class="desktop-icone" type="button" data-abrir="janTerminal">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect class="ico-tela" x="4" y="8" width="40" height="32" rx="3"/><path class="ico-linhas" d="M11 19l6 5-6 5M21 30h10"/></svg>
+            <span>terminal</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="desktop-centro">
+        <p class="prompt"><span class="prompt-usuario">lucas@lam-os</span>:<span class="prompt-caminho">~</span>$ whoami</p>
+
+        <h1 class="nome-glitch" data-texto="Lucas Andrade Martins" tabindex="0">Lucas Andrade Martins</h1>
+
+        <p class="digitando" aria-live="off">
+          <span class="digitando-seta" aria-hidden="true">&gt;</span>
+          <span id="textoDigitado">Técnico em Informática</span><span class="cursor" aria-hidden="true"></span>
+        </p>
+
+        <p class="desktop-texto">
+          Estudante do 2º ano do Ensino Médio e Técnico em Informática no Cotemig.
+          Gosto de transformar lógica em coisas que funcionam — de páginas web a sistemas em C#.
+        </p>
+
+        <div class="desktop-acoes">
+          <a href="#projetos" class="botao botao-primario">Ver projetos</a>
+          <button type="button" class="botao botao-contorno" data-abrir="janTerminal">
+            <span class="mono" aria-hidden="true">&gt;_</span> Abrir terminal
+          </button>
+        </div>
+      </div>
+
+      <a href="#sobre" class="rolar-indicador" aria-label="Rolar para a seção Sobre">
+        <span>scroll</span>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <!-- ===================== SOBRE ===================== -->
+    <section class="secao" id="sobre" aria-labelledby="tituloSobre">
+      <div class="janela" data-revelar>
+        <div class="janela-barra">
+          <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="janela-titulo">~/sobre — cat sobre.txt</span>
+        </div>
+
+        <div class="janela-corpo sobre-grade">
+          <figure class="foto-janela" data-revelar style="--atraso:1">
+            <div class="foto-janela-barra">
+              <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span>lucas.jpg</span>
+            </div>
+            <div class="foto-recorte">
+              <img src="assets/img/foto-perfil.jpg" alt="Foto de Lucas Andrade Martins, de camisa branca" width="1035" height="690" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="foto-legenda"><span class="ponto-online" aria-hidden="true"></span> status: buscando estágio</figcaption>
+          </figure>
+
+          <div class="sobre-texto">
+            <p class="rotulo" data-revelar style="--atraso:1"># sobre</p>
+            <h2 class="titulo-secao" id="tituloSobre" data-revelar style="--atraso:2">Quem está por trás do código</h2>
+            <p data-revelar style="--atraso:3">
+              Meu nome é Lucas, tenho 17 anos e curso o 2º ano do Ensino Médio junto ao Técnico em
+              Informática no Cotemig, unidade Barroca. Antes disso, estudei o Ensino Fundamental no
+              Colégio Santa Maria Minas, em Contagem.
+            </p>
+            <p data-revelar style="--atraso:4">
+              Busco ampliar meus conhecimentos na área de TI, aprendendo a operar ferramentas, sistemas
+              e recursos usados no mercado. Gosto de resolver problemas com lógica e de testar ideias na
+              prática — já tive contato com robótica, desenvolvimento de software, redes de computadores
+              e cibersegurança, e quero levar isso adiante profissionalmente.
+            </p>
+
+            <dl class="fatos" data-revelar style="--atraso:5">
+              <div><dt>idade</dt><dd>17 anos</dd></div>
+              <div><dt>cidade</dt><dd>Contagem, MG</dd></div>
+              <div><dt>curso</dt><dd>Técnico em Informática — Cotemig</dd></div>
+              <div><dt>idioma</dt><dd>Inglês intermediário (B2)</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HABILIDADES ===================== -->
+    <section class="secao" id="habilidades" aria-labelledby="tituloHabilidades">
+      <div class="janela" data-revelar>
+        <div class="janela-barra">
+          <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="janela-titulo">~/habilidades — ls -la</span>
+        </div>
+
+        <div class="janela-corpo">
+          <p class="rotulo" data-revelar># habilidades</p>
+          <h2 class="titulo-secao" id="tituloHabilidades" data-revelar style="--atraso:1">Ferramentas e conhecimentos</h2>
+
+          <div class="habilidades-grade">
+            <article class="grupo" data-revelar style="--atraso:2">
+              <h3 class="grupo-titulo"><span aria-hidden="true">01</span> Linguagens &amp; web</h3>
+              <ul class="chips">
+                <li>HTML</li><li>CSS</li><li>JavaScript</li><li>C#</li><li>Python</li><li>SQL · MySQL</li>
+              </ul>
+            </article>
+
+            <article class="grupo" data-revelar style="--atraso:3">
+              <h3 class="grupo-titulo"><span aria-hidden="true">02</span> Sistemas &amp; infraestrutura</h3>
+              <ul class="chips">
+                <li>Windows</li><li>Linux</li><li>Hardware e software</li><li>Redes de computadores</li>
+                <li>Manutenção e configuração de computadores</li>
+              </ul>
+            </article>
+
+            <article class="grupo" data-revelar style="--atraso:4">
+              <h3 class="grupo-titulo"><span aria-hidden="true">03</span> Lógica &amp; outras áreas</h3>
+              <ul class="chips">
+                <li>Lógica de programação</li><li>Robótica e automação</li><li>Cibersegurança</li><li>Google Workspace</li>
+              </ul>
+            </article>
+
+            <article class="grupo" data-revelar style="--atraso:5">
+              <h3 class="grupo-titulo"><span aria-hidden="true">04</span> Soft skills</h3>
+              <ul class="chips chips-suaves">
+                <li>Raciocínio lógico</li><li>Proatividade</li><li>Trabalho em equipe</li>
+                <li>Vontade de aprender</li><li>Organização</li><li>Comunicação</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FORMAÇÃO ===================== -->
+    <section class="secao" id="formacao" aria-labelledby="tituloFormacao">
+      <div class="janela" data-revelar>
+        <div class="janela-barra">
+          <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="janela-titulo">~/formacao — cat historico.log</span>
+        </div>
+
+        <div class="janela-corpo">
+          <p class="rotulo" data-revelar># formação</p>
+          <h2 class="titulo-secao" id="tituloFormacao" data-revelar style="--atraso:1">Onde venho aprendendo</h2>
+
+          <div class="formacao-grade">
+            <article class="formacao-cartao" data-revelar style="--atraso:2">
+              <p class="formacao-status formacao-status-ativo"><span class="ponto-online" aria-hidden="true"></span> em andamento</p>
+              <h3>Colégio Cotemig — Unidade Barroca</h3>
+              <p class="formacao-curso">2º ano do Ensino Médio + Técnico em Informática</p>
+              <p class="formacao-detalhe">Turno da manhã</p>
+              <p class="formacao-data"><time datetime="2025-02">fev 2025</time> — <time datetime="2027-12">dez 2027</time></p>
+            </article>
+
+            <article class="formacao-cartao" data-revelar style="--atraso:3">
+              <p class="formacao-status">concluído</p>
+              <h3>Colégio Santa Maria Minas — Unidade Contagem</h3>
+              <p class="formacao-curso">Ensino Fundamental I e II</p>
+              <p class="formacao-detalhe">&nbsp;</p>
+              <p class="formacao-data"><time datetime="2016-02">fev 2016</time> — <time datetime="2024-12">dez 2024</time></p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJETOS ===================== -->
+    <section class="secao" id="projetos" aria-labelledby="tituloProjetos">
+      <div class="janela" data-revelar>
+        <div class="janela-barra">
+          <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="janela-titulo">~/projetos — 3 pastas</span>
+        </div>
+
+        <div class="janela-corpo">
+          <p class="rotulo" data-revelar># projetos</p>
+          <h2 class="titulo-secao" id="tituloProjetos" data-revelar style="--atraso:1">O que venho construindo</h2>
+          <p class="secao-dica" data-revelar style="--atraso:2">Clique em uma pasta para abrir os detalhes.</p>
+
+          <ul class="pastas">
+            <li data-revelar style="--atraso:3">
+              <button class="pasta" type="button" data-projeto="knockout-lp" aria-haspopup="dialog">
+                <span class="pasta-aba" aria-hidden="true"></span>
+                <span class="pasta-corpo">
+                  <span class="pasta-nome">knockout-house-lp/</span>
+                  <span class="pasta-titulo">Knockout House — Landing Page</span>
+                  <span class="pasta-desc">Landing page fictícia acadêmica, prototipada no Figma.</span>
+                  <span class="pasta-techs"><span>HTML</span><span>CSS</span><span>JS</span><span>Figma</span></span>
+                </span>
+                <span class="pasta-brilho" aria-hidden="true"></span>
+              </button>
+            </li>
+
+            <li data-revelar style="--atraso:4">
+              <button class="pasta" type="button" data-projeto="knockout-shop" aria-haspopup="dialog">
+                <span class="pasta-aba" aria-hidden="true"></span>
+                <span class="pasta-corpo">
+                  <span class="pasta-nome">knockout-house-shop/</span>
+                  <span class="pasta-titulo">Knockout House — E-commerce</span>
+                  <span class="pasta-desc">E-commerce fictício com layout em CSS Grid, prototipado no Figma.</span>
+                  <span class="pasta-techs"><span>HTML</span><span>CSS</span><span>JS</span><span>Figma</span></span>
+                </span>
+                <span class="pasta-brilho" aria-hidden="true"></span>
+              </button>
+            </li>
+
+            <li data-revelar style="--atraso:5">
+              <button class="pasta" type="button" data-projeto="parques-solares" aria-haspopup="dialog">
+                <span class="pasta-aba" aria-hidden="true"></span>
+                <span class="pasta-corpo">
+                  <span class="pasta-nome">parques-solares-cs/</span>
+                  <span class="pasta-titulo">Monitoramento de Parques Solares</span>
+                  <span class="pasta-desc">Sistema de monitoramento usando matrizes e vetores em C#.</span>
+                  <span class="pasta-techs"><span>C#</span></span>
+                </span>
+                <span class="pasta-brilho" aria-hidden="true"></span>
+              </button>
+            </li>
+          </ul>
+
+          <a href="https://github.com/LucasAMartins09" class="link-seta" target="_blank" rel="noopener noreferrer" data-revelar style="--atraso:6">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path class="preenchido" d="M12 2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.68-4.57 4.92.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+            Ver todos os repositórios no GitHub
+            <span class="mono" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTATO ===================== -->
+    <section class="secao" id="contato" aria-labelledby="tituloContato">
+      <div class="janela" data-revelar>
+        <div class="janela-barra">
+          <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="janela-titulo">~/contato — ./contato.sh</span>
+        </div>
+
+        <div class="janela-corpo contato-grade">
+          <div class="contato-info">
+            <p class="rotulo" data-revelar># contato</p>
+            <h2 class="titulo-secao" id="tituloContato" data-revelar style="--atraso:1">Vamos conversar</h2>
+            <p data-revelar style="--atraso:2">
+              Estou aberto a oportunidades de estágio e a projetos onde eu possa aprender e contribuir.
+              Preencha o formulário ou me chame por um dos canais abaixo.
+            </p>
+
+            <ul class="canais" data-revelar style="--atraso:3">
+              <li>
+                <a href="mailto:lucasamartins2009@gmail.com">
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                  <span class="canal-rotulo">e-mail</span>
+                  <span class="canal-valor">lucasamartins2009@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/5531997382009" target="_blank" rel="noopener noreferrer">
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1c-1-.4-1.6-1-2-2l1-1-1-2z"/></svg>
+                  <span class="canal-rotulo">whatsapp</span>
+                  <span class="canal-valor">(31) 99738-2009</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/lucas-andrade-martins-8780a93b7/" target="_blank" rel="noopener noreferrer">
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+                  <span class="canal-rotulo">linkedin</span>
+                  <span class="canal-valor">/lucas-andrade-martins</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/LucasAMartins09" target="_blank" rel="noopener noreferrer">
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.5-4-2-6-2.5M15 21v-3.5a3 3 0 0 0-.9-2.3c3-.3 6-1.4 6-6.5a5 5 0 0 0-1.4-3.5 4.6 4.6 0 0 0-.1-3.5s-1.1-.3-3.6 1.4a12.4 12.4 0 0 0-6.5 0C6 1.4 4.9 1.7 4.9 1.7a4.6 4.6 0 0 0-.1 3.5A5 5 0 0 0 3.4 8.7c0 5.1 3 6.2 6 6.5a3 3 0 0 0-.9 2.3V21"/></svg>
+                  <span class="canal-rotulo">github</span>
+                  <span class="canal-valor">/LucasAMartins09</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <form class="formulario" id="formulario" novalidate data-revelar style="--atraso:2">
+            <p class="formulario-cabecalho mono" aria-hidden="true">$ ./enviar-mensagem.sh</p>
+
+            <div class="campo">
+              <label for="nome"><span aria-hidden="true">&gt;</span> nome</label>
+              <input type="text" id="nome" name="nome" autocomplete="name" aria-describedby="erroNome" required>
+              <p class="erro" id="erroNome" aria-live="polite"></p>
+            </div>
+
+            <div class="campo">
+              <label for="telefone"><span aria-hidden="true">&gt;</span> telefone</label>
+              <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="numeric" placeholder="(31) 99999-9999" aria-describedby="erroTelefone" required>
+              <p class="erro" id="erroTelefone" aria-live="polite"></p>
+            </div>
+
+            <div class="campo">
+              <label for="email"><span aria-hidden="true">&gt;</span> e-mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@exemplo.com" aria-describedby="erroEmail" required>
+              <p class="erro" id="erroEmail" aria-live="polite"></p>
+            </div>
+
+            <div class="campo">
+              <label for="mensagem"><span aria-hidden="true">&gt;</span> mensagem</label>
+              <textarea id="mensagem" name="mensagem" rows="5" maxlength="300" aria-describedby="erroMensagem contadorTexto" required></textarea>
+              <div class="campo-rodape">
+                <p class="erro" id="erroMensagem" aria-live="polite"></p>
+                <p class="contador" id="contadorTexto"><span id="contador">0</span>/300</p>
+              </div>
+            </div>
+
+            <button type="submit" class="botao botao-primario botao-enviar" id="botaoEnviar">
+              <span class="botao-enviar-texto">Enviar mensagem</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ (BARRA DE STATUS) ===================== -->
+  <footer class="rodape">
+    <div class="rodape-conteudo">
+      <p class="rodape-status mono"><span class="ponto-online" aria-hidden="true"></span> LAM-OS · Lucas Andrade Martins · Técnico em Informática · Contagem, MG</p>
+      <ul class="rodape-links">
+        <li><a href="mailto:lucasamartins2009@gmail.com">e-mail</a></li>
+        <li><a href="https://wa.me/5531997382009" target="_blank" rel="noopener noreferrer">whatsapp</a></li>
+        <li><a href="https://www.linkedin.com/in/lucas-andrade-martins-8780a93b7/" target="_blank" rel="noopener noreferrer">linkedin</a></li>
+        <li><a href="https://github.com/LucasAMartins09" target="_blank" rel="noopener noreferrer">github</a></li>
+      </ul>
+      <p class="rodape-direitos mono">&copy; <span id="ano">2026</span> Lucas Andrade Martins</p>
+    </div>
+  </footer>
+
+  <!-- ===================== JANELAS (DIÁLOGOS) ===================== -->
+
+  <!-- sobre.txt -->
+  <dialog class="janela-dialogo" id="janSobre" aria-labelledby="janSobreTitulo">
+    <div class="dialogo-caixa">
+      <div class="janela-barra">
+        <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="janela-titulo" id="janSobreTitulo">sobre.txt</span>
+        <button class="dialogo-fechar" type="button" data-fechar aria-label="Fechar janela">&times;</button>
+      </div>
+      <div class="dialogo-corpo crt">
+        <p class="t-linha"><span class="t-prompt">$</span> cat sobre.txt</p>
+        <p>Lucas Andrade Martins, 17 anos — Contagem, MG.</p>
+        <p>Ensino Médio + Técnico em Informática no Cotemig (2025–2027).</p>
+        <p>Interesses: desenvolvimento de software, redes, robótica e cibersegurança.</p>
+        <p class="t-fraco"># objetivo: ampliar conhecimentos em TI e conquistar a primeira experiência profissional.</p>
+        <div class="dialogo-acoes">
+          <a href="#sobre" class="botao botao-primario botao-pequeno" data-fechar>Ler a seção completa</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- projetos/ -->
+  <dialog class="janela-dialogo" id="janProjetos" aria-labelledby="janProjetosTitulo">
+    <div class="dialogo-caixa">
+      <div class="janela-barra">
+        <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="janela-titulo" id="janProjetosTitulo">projetos/</span>
+        <button class="dialogo-fechar" type="button" data-fechar aria-label="Fechar janela">&times;</button>
+      </div>
+      <div class="dialogo-corpo crt">
+        <p class="t-linha"><span class="t-prompt">$</span> ls projetos/</p>
+        <ul class="t-lista">
+          <li><button type="button" class="t-link" data-projeto="knockout-lp">knockout-house-lp/</button> <span class="t-fraco">HTML · CSS · JS · Figma</span></li>
+          <li><button type="button" class="t-link" data-projeto="knockout-shop">knockout-house-shop/</button> <span class="t-fraco">HTML · CSS · JS · Figma</span></li>
+          <li><button type="button" class="t-link" data-projeto="parques-solares">parques-solares-cs/</button> <span class="t-fraco">C#</span></li>
+        </ul>
+        <div class="dialogo-acoes">
+          <a href="#projetos" class="botao botao-primario botao-pequeno" data-fechar>Ir para os projetos</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- contato.sh -->
+  <dialog class="janela-dialogo" id="janContato" aria-labelledby="janContatoTitulo">
+    <div class="dialogo-caixa">
+      <div class="janela-barra">
+        <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="janela-titulo" id="janContatoTitulo">contato.sh</span>
+        <button class="dialogo-fechar" type="button" data-fechar aria-label="Fechar janela">&times;</button>
+      </div>
+      <div class="dialogo-corpo crt">
+        <p class="t-linha"><span class="t-prompt">$</span> ./contato.sh</p>
+        <p class="t-fraco">[ok] canais disponíveis:</p>
+        <ul class="t-lista">
+          <li>email&nbsp;&nbsp;&nbsp;&nbsp;→ <a href="mailto:lucasamartins2009@gmail.com">lucasamartins2009@gmail.com</a></li>
+          <li>whatsapp → <a href="https://wa.me/5531997382009" target="_blank" rel="noopener noreferrer">(31) 99738-2009</a></li>
+          <li>linkedin → <a href="https://www.linkedin.com/in/lucas-andrade-martins-8780a93b7/" target="_blank" rel="noopener noreferrer">/lucas-andrade-martins</a></li>
+          <li>github&nbsp;&nbsp;&nbsp;→ <a href="https://github.com/LucasAMartins09" target="_blank" rel="noopener noreferrer">/LucasAMartins09</a></li>
+        </ul>
+        <div class="dialogo-acoes">
+          <a href="#contato" class="botao botao-primario botao-pequeno" data-fechar>Abrir formulário</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- detalhes de um projeto (conteúdo preenchido pelo JS) -->
+  <dialog class="janela-dialogo" id="janProjeto" aria-labelledby="janProjetoTitulo">
+    <div class="dialogo-caixa">
+      <div class="janela-barra">
+        <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="janela-titulo" id="janProjetoTitulo">projeto/</span>
+        <button class="dialogo-fechar" type="button" data-fechar aria-label="Fechar janela">&times;</button>
+      </div>
+      <div class="dialogo-corpo crt" id="janProjetoCorpo"></div>
+    </div>
+  </dialog>
+
+  <!-- terminal interativo -->
+  <dialog class="janela-dialogo janela-terminal" id="janTerminal" aria-labelledby="janTerminalTitulo">
+    <div class="dialogo-caixa">
+      <div class="janela-barra">
+        <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="janela-titulo" id="janTerminalTitulo">terminal — lucas@lam-os</span>
+        <button class="dialogo-fechar" type="button" data-fechar aria-label="Fechar terminal">&times;</button>
+      </div>
+      <div class="dialogo-corpo crt terminal-corpo" id="terminalCorpo">
+        <div class="terminal-saida" id="terminalSaida" aria-live="polite"></div>
+        <form class="terminal-linha" id="terminalForm" autocomplete="off">
+          <label for="terminalEntrada"><span class="t-usuario">lucas@lam-os</span>:<span class="t-caminho">~</span>$</label>
+          <input type="text" id="terminalEntrada" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="send" aria-label="Digite um comando">
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- confirmação do formulário -->
+  <dialog class="janela-dialogo janela-confirmacao" id="modalEnviado" aria-labelledby="modalTitulo" aria-describedby="modalTexto">
+    <div class="dialogo-caixa">
+      <div class="janela-barra">
+        <span class="janela-pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="janela-titulo">enviar-mensagem.sh</span>
+        <button class="dialogo-fechar" type="button" data-fechar aria-label="Fechar aviso">&times;</button>
+      </div>
+      <div class="dialogo-corpo crt confirmacao-corpo">
+        <div class="confirmacao-icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+        </div>
+        <p class="t-fraco mono">[exit 0] processo concluído</p>
+        <h2 class="confirmacao-titulo" id="modalTitulo">Mensagem enviada!</h2>
+        <p id="modalTexto">
+          Obrigado pelo contato, <strong id="modalNome">visitante</strong>. Vou responder assim que
+          possível pelo e-mail ou telefone informado.
+        </p>
+        <button class="botao botao-primario" type="button" data-fechar>Fechar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Scripts (ordem importa: janelas.js expõe funções usadas pelos demais) -->
+  <script src="assets/js/tema.js" defer></script>
+  <script src="assets/js/janelas.js" defer></script>
+  <script src="assets/js/painel.js" defer></script>
+  <script src="assets/js/digitacao.js" defer></script>
+  <script src="assets/js/revelar.js" defer></script>
+  <script src="assets/js/chuva.js" defer></script>
+  <script src="assets/js/projetos.js" defer></script>
+  <script src="assets/js/formulario.js" defer></script>
+  <script src="assets/js/terminal.js" defer></script>
+</body>
+</html>
